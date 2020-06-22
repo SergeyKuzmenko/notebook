@@ -41,16 +41,10 @@
         </div>
       </form>
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
-              class="fas fa-th-large"></i></a>
-      </li>
-    </ul>
   </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ route('index') }}" class="brand-link">
-      <img src="{{ asset('public/img/AdminLTELogo.png') }}" alt="Logo" class="brand-image img-circle elevation-3"
+      <img src="{{ asset('public/img/logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
     </a>
@@ -88,13 +82,13 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('list.countries.get') }}" class="nav-link {{ (Request::route()->getName() == 'list.countries.get') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-flag nav-icon"></i>
                   <p>Список стран</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('list.cities.get') }}" class="nav-link {{ (Request::route()->getName() == 'list.cities.get') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-building nav-icon"></i>
                   <p>Список городов</p>
                 </a>
               </li>
@@ -116,17 +110,11 @@
     </div>
     @yield('content')
   </div>
-  <aside class="control-sidebar control-sidebar-dark">
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
   <footer class="main-footer">
     <div class="float-right d-none d-sm-inline">
       <b>Generated:</b> {{ date('d.m.Y') }} {{ date('H:i:s') }}
     </div>
-    <strong>Copyright © {{ date('Y') }} <a href="{{ url('/') }}">{{ url('/') }}</a></strong>
+    <strong>{{ env('APP_NAME') }} © {{ date('Y') }} <a href="{{ url('/') }}">{{ url('/') }}</a></strong>
   </footer>
 </div>
 

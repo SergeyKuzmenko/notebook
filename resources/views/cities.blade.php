@@ -80,7 +80,7 @@
                     <div class="col-md-5">
                       <div class="form-group">
                         <label>Страна</label>
-                        <select class="form-control select2" name="country_id" id="country_id"
+                        <select class="form-control select2 {{ (session('city_added_failed')) ? 'is-invalid' : '' }}" name="country_id" id="country_id"
                                 style="width: 100%;" data-placeholder="Выбрать страну">
                           <option selected="selected"></option>
                           @foreach($countries as $key => $country)
@@ -92,7 +92,7 @@
                     <div class="col-md-5">
                       <div class="form-group">
                         <label>Название города</label>
-                        <input type="text" class="form-control rounded-0" name="city_name"
+                        <input type="text" class="form-control rounded-0 {{ (session('city_added_failed')) ? 'is-invalid' : '' }}" name="city_name"
                                placeholder="Введите название...">
                       </div>
                     </div>

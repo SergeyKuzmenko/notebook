@@ -51,6 +51,14 @@
                   </li>
                 @endforeach
               @endif
+              @if($note['contact_note'])
+                <blockquote class="quote-secondary" style="margin-left: 0px; margin-bottom: -30px; margin-top: 5px;">
+                <p class="widget-user-contact-note-text">
+                   {{ $note['contact_note'] }}
+                </p>
+                <small>Заметка о контакте</small>
+              </blockquote>
+              @endif
             </ul>
 
             </div>

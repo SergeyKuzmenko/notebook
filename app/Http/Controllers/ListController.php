@@ -33,6 +33,8 @@ class ListController extends Controller
       $country->name = $request->input('country_name');
       $country->save();
       return back()->with('country_added', 'Новая страна успешно добавлена');
+    } else {
+      return back()->with('country_added_failed', 'Введите название страны');
     }
   }
 
@@ -86,7 +88,7 @@ class ListController extends Controller
       $city->save();
       return back()->with('city_added', 'Новый город успешно добавлен');
     } else {
-      return back()->with('city_added_failed', 'Для добавления нового города выберите страну принадежности и введите название города');
+      return back()->with('city_added_failed', 'Для добавления нового города выберите страну принадежности и название города');
     }
   }
 

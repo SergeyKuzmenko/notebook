@@ -8,6 +8,13 @@
 
 @section('content')
   <section class="content">
+    @if(session('country_added_failed'))
+      <div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-exclamation-triangle"></i> Ошибка</h5>
+        {!! session('country_added_failed') !!}
+      </div>
+    @endif
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -55,7 +62,7 @@
                 <form action="{{ route('list.countries.post') }}" method="POST">
                   @csrf
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control rounded-0" name="country_name"
+                    <input type="text" class="form-control rounded-0 {{ (session('country_added_failed')) ? 'is-invalid' : '' }}" name="country_name"
                            placeholder="Введите название...">
                     <span class="input-group-append">
                       <button type="submit" class="btn btn-block btn-outline-success">Добавить</button>
