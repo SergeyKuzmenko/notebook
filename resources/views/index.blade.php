@@ -71,7 +71,7 @@
           <div class="modal-footer justify-content-between">
             <a href="" class="btn btn-block btn-outline-primary action-update-note">Редактировать</a>
             <a href="" class="btn btn-block btn-outline-danger action-delete-note">Удалить</a>
-            <a href="#close" class="btn btn-block btn-outline-default" data-dismiss="modal">Закрыть</a>
+            <button class="btn btn-block btn-outline-default" data-dismiss="modal">Закрыть</button>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@
     <div class="card">
       <div class="card-body table-responsive p-0">
         @if(count($notes) > 0)
-          <table class="table table-striped table-valign-middle">
+          <table class="table table-hover text-nowrap table-valign-middle">
             <thead>
             <tr>
               <th>@sortablelink('id', '#')</th>
@@ -103,7 +103,7 @@
                   <a href="{{ route('note.view.get', ['id' => $note['id']]) }}" data-note-id="{{ $note['id'] }}"
                      class="view-details">
                     @if($note['photo'])
-                      <img src="{{ asset('public/photos/') . '/' .  $note['photo'] . '?' . rand()}}"
+                      <img src="{{ asset('public/photos') . '/' .  $note['photo']}}"
                            alt="{{ $note['id'] }}"
                            class="img-circle img-size-32 mr-2">
                     @else()

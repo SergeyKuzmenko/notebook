@@ -86,7 +86,7 @@ class NoteController extends Controller
     $image = Image::make($photo);
     $image->fit(256)->resize(256, null, function ($constraint) {
       $constraint->aspectRatio();
-    })->save($folder . '/' . $name);
+    })->save($folder . $name);
     return $image->basename;
   }
 
@@ -191,7 +191,7 @@ class NoteController extends Controller
    */
   public function viewGet($id, Note $note, Country $country, City $city, SocialNetwork $socialNetworks)
   {
-    return view('view', ['note' => $note->findOrFail($id), 'country' => $country, 'city' => $city, 'social_networks' => $socialNetworks->where('note_id', $id)->get()->toArray()]);
+    return view('view', ['note' => $note->findOrFail($id), 'country' => $country, 'city' => $city, 'social_networks' => $socialNetworks->get_social_networks($id)]);
   }
 
   /**
@@ -258,6 +258,8 @@ class NoteController extends Controller
         ->orWhere('phone', 'LIKE', "%$query%")
         ->get()->toArray();
       return view('search', ['notes' => $result, 'query' => $query]);
+    } else {
+      return back();
     }
   }
 

@@ -25,7 +25,7 @@ class SocialNetwork extends Model
    */
   public function note()
   {
-    return $this->belongsTo(Note::class);
+    return $this->belongsTo('App\Models\Note');
   }
 
   /**
@@ -34,6 +34,6 @@ class SocialNetwork extends Model
    */
   public function get_social_networks($note_id)
   {
-    return $this->where('note_id', $note_id)->all();
+    return $this->where('note_id', $note_id)->get();
   }
 }

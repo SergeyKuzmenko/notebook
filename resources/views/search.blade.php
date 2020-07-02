@@ -87,7 +87,7 @@
       </div>
       <div class="card-body table-responsive p-0">
         @if(count($notes) > 0)
-          <table class="table table-striped table-valign-middle">
+          <table class="table table-hover text-nowrap table-valign-middle">
             <thead>
             <tr>
               <th>@sortablelink('id', '#')</th>

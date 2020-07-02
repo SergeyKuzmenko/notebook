@@ -42,21 +42,11 @@ class Note extends Model
   }
 
   /**
-   * @return mixed
-   */
-  public function count()
-  {
-    return $this->count();
-  }
-
-  /**
-   * @param $id
    * @return string
    */
-  public function get_full_name($id)
+  public function get_full_name()
   {
-    $user = $this->find($id);
-    return $user->last_name . ' ' . $user->first_name . ' ' . $user->patronymic;
+    return "{$this->last_name} {$this->first_name} {$this->patronymic}";
   }
 
   /**
@@ -67,7 +57,7 @@ class Note extends Model
   {
     $user = $this->find($id);
     if ($user->photo !== null) {
-      return asset('public/photos/' . '/' . $user->photo);
+      return asset('public/photos/' . $user->photo);
     } else {
       return asset('public/img/default-photo-view.png');
     }

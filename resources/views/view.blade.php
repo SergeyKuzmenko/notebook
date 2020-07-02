@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', $note->get_full_name($note['id']))
+@section('title', $note->get_full_name())
 
 @section('styles')
   <style>
@@ -21,10 +21,10 @@
           <div class="card-body box-profile">
             <div class="text-center">
               <img class="profile-user-img img-fluid img-circle" src="{{ $note->get_photo_url($note['id']) }}"
-                   alt="{{ $note->get_full_name($note['id']) }}">
+                   alt="{{ $note->get_full_name() }}">
             </div>
 
-            <h3 class="profile-username text-center">{{ $note->get_full_name($note['id']) }}</h3>
+            <h3 class="profile-username text-center">{{ $note->get_full_name() }}</h3>
             <p>
               <a href="mailto:{{ $note['email'] }}" class="btn btn-default btn-block">{{ $note['email'] }}</a>
             </p>
@@ -66,9 +66,7 @@
             <a href="{{ route('note.update.get', ['id' => $note['id']]) }}" class="btn btn-block btn-outline-primary"><b>Редактировать</b></a>
             <a href="{{ route('note.delete', ['id' => $note['id']]) }}" class="btn btn-block btn-outline-danger">Удалить</a>
           </div>
-          <!-- /.card-body -->
         </div>
-        <!-- /.card -->
       </div>
     </div>
   </section>

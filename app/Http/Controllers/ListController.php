@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Country;
-use Illuminate\Http\Request;
 
 /**
  * Class ListController
