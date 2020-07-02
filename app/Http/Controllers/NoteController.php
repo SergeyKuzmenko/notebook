@@ -148,14 +148,14 @@ class NoteController extends Controller
         $response_array[$i]['name'] = $request_array[0][$i];
         $response_array[$i]['url'] = $request_array[1][$i];
       }
-      $social_networks = $response_array;
-    } else {
-      $social_networks = [];
-    }
+      $social_networks = array_filter($response_array, function ($item) {
+        return ($item['name'] !== null && $item['url'] !== null);
+      });
 
-    if ($social_networks) {
       $socialNetwork->where('note_id', $id)->delete();
       $socialNetwork->insert($social_networks);
+    } else {
+      $socialNetwork->where('note_id', $id)->delete();
     }
     return back()->with('updated', 'Запись успешно обновлена');
   }

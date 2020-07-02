@@ -198,15 +198,15 @@
                   <div class="card-body">
                     <div class="row social_networks_items">
                       <div class="col-md-12">
-                        <div class="form-group social_networks_item_0" data-soc-link="0">
+                        <div class="form-group social_networks_item__parent">
                           <div class="row">
                             <div class="col-md-4">
-                              <input type="text" class="form-control" name="social_networks[name][0]"
+                              <input type="text" class="form-control" name="social_networks[name][]"
                                      placeholder="Название">
                             </div>
                             <br>
                             <div class="col-md-8">
-                              <input type="url" class="form-control" name="social_networks[link][0]"
+                              <input type="url" class="form-control" name="social_networks[link][]"
                                      placeholder="Ссылка">
                             </div>
                           </div>
@@ -390,27 +390,29 @@
       previewPhoto(this);
     });
 
-    let counter = 1;
+    let id = function () {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    };
     $(".action-add-soc-link").click(function () {
-      let tpl = `<div class="col-md-12 social_networks_item_${counter}" data-soc-link="${counter}">
+      uid = id();
+      let tpl = `<div class="col-md-12 social_networks_item_${uid}">
                      <div class="form-group">
                       <div class="row">
                         <div class="col-md-4">
-                          <input type="text" class="form-control" name="social_networks[name][${counter}]"
+                          <input type="text" class="form-control" name="social_networks[name][]"
                                  placeholder="Название">
                         </div>
                         <br>
                         <div class="col-md-7">
-                          <input type="url" class="form-control" name="social_networks[link][${counter}]" placeholder="Ссылка">
+                          <input type="url" class="form-control" name="social_networks[link][]" placeholder="Ссылка">
                         </div>
                         <div class="col-md-1">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="deleteSocLink(${counter})">&times;</button>
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="deleteSocLink('${uid}')">&times;</button>
                         </div>
                       </div>
                     </div>
                    </div>`
       $('.social_networks_items').append(tpl);
-      counter++
     });
 
     function deleteSocLink(id) {

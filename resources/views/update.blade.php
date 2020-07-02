@@ -240,15 +240,15 @@
                       @if($social_networks)
                         @foreach($social_networks as $key => $social_network)
                         <div class="col-md-12">
-                          <div class="form-group social_networks_item_{{ $key }}" data-soc-link="{{ $key }}">
+                          <div class="form-group social_networks_item_{{ $key }}">
                             <div class="row">
                               <div class="col-md-4">
-                                <input type="text" class="form-control" name="social_networks[name][{{ $key }}]"
+                                <input type="text" class="form-control" name="social_networks[name][]"
                                        placeholder="Название" value="{{ $social_network['name'] }}">
                               </div>
                               <br>
                               <div class="col-md-7">
-                                <input type="url" class="form-control" name="social_networks[link][{{ $key }}]"
+                                <input type="url" class="form-control" name="social_networks[link][]"
                                        placeholder="Ссылка" value="{{ $social_network['url'] }}">
                               </div>
                               <div class="col-md-1">
@@ -452,10 +452,12 @@
       previewPhoto(this);
     });
 
-    let counter = {{ count($social_networks) }}
+    let id = function () {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    };
     $(".action-add-soc-link").click(function () {
-      if (counter <= 10) {
-        let tpl = `<div class="col-md-12 social_networks_item_${counter}" data-soc-link="${counter}">
+      uid = id();
+      let tpl = `<div class="col-md-12 social_networks_item_${uid}">
                      <div class="form-group">
                       <div class="row">
                         <div class="col-md-4">
@@ -467,14 +469,12 @@
                           <input type="url" class="form-control" name="social_networks[link][]" placeholder="Ссылка">
                         </div>
                         <div class="col-md-1">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="deleteSocLink(${counter})">&times;</button>
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="deleteSocLink('${uid}')">&times;</button>
                         </div>
                       </div>
                     </div>
                    </div>`
-        $('.social_networks_items').append(tpl);
-        counter++
-      }
+      $('.social_networks_items').append(tpl);
     });
 
     function deleteSocLink(id) {
